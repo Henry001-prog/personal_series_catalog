@@ -44,7 +44,7 @@ export const deleteSerie = serie => {
         return new Promise((resolve, reject) => {
             Alert.alert(
                 'Deletar', 
-                `Deseja deletar série ${serie.title}`, 
+                `Deseja deletar série ${serie.title}?`, 
                 [{
                     text: 'Não',
                     onPress: () => {

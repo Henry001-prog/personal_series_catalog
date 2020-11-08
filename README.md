@@ -1,6 +1,6 @@
 <h1 align="center">Personal Series Catalog</h1>
 
-<p align="center">Series personal list application to catalog and classify them through notes, created in React Native during the Udemy's React Native course.</p>
+<p align="center">Series personal list application to catalog and classify them through notes, created in React Native during the Udemy's React Native with Redux course.</p>
 
 <h3 align="center">
     <p>Splash screen</p>
@@ -23,26 +23,22 @@
 </h3>
 
 <h3 align="center">
-    <p></p>
+    <p>Description of the series with animation to expand the text</p>
     <img src="/screenshots/rn5.png" height="480" width="280">
-</h3>
-
-<h3 align="center">
-    <p></p>
     <img src="/screenshots/rn6.png" height="480" width="280">
 </h3>
 
 <h3 align="center">
-    <p></p>
+    <p>Confirmation alert to delete series</p>
     <img src="/screenshots/rn7.png" height="480" width="280">
 </h3>
 
 <h3 align="center">
-    <p></p>
+    <p>Series edit form</p>
     <img src="/screenshots/rn8.png" height="480" width="280">
 </h3>
 
 <h3 align="center">
-    <p></p>
+    <p>Form to create series</p>
     <img src="/screenshots/rn9.png" height="480" width="280">
 </h3>
