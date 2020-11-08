@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "series",
+    "slug": "series",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/tv-show-mdpi.png",
+    "splash": {
+      "image": "./assets/tv-show-mdpi.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.alissonhenrique.serie",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.alissonhenrique.serie",
+      "splash": {
+        "ldpi": "./assets/tv-show-mdpi.png",
+        "hdpi": "./assets/tv-show-hdpi.png",
+        "xhdpi": "./assets/tv-show-xhdpi.png",
+        "xxhdpi": "./assets/tv-show-xxhdpi.png",
+        "xxxhdpi": "./assets/tv-show-xxxhdpi.png",
+        "resizeMode": "native"
+      },
+      "versionCode": 1
+    }
+  }
+}
