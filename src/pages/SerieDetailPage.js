@@ -21,13 +21,13 @@ class SerieDetailPage extends React.Component {
         return(
             <ScrollView>
                 {   
-                    serie.img 
-                       ?<Image 
-                            style={styles.image}
-                            source={{
-                            uri: serie.img
-                            }} 
-                        />
+                    serie.img64 
+                        ? <Image 
+                                style={styles.image}
+                                source={{
+                                uri: `data:image/jpeg;base64,${serie.img64}`
+                                }} 
+                            />
                         : null
                 }
                 <Line label="Título" content={serie.title} />

@@ -8,7 +8,7 @@ const FormRow =  props => {
                 styles.container, 
                 first ? styles.first : null, 
                 last ? styles.last : null
-            ]}>
+        ]}>
             {children}
         </View>
     )

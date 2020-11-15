@@ -20,7 +20,7 @@ const SerieCard = ({ serie, isFirstColumn, onNavigate }) => (
         <View style={styles.card}>
             <Image 
                 source={{
-                    uri: serie.img
+                    uri: `data:image/jpeg;base64,${serie.img64}`
                 }}
                 aspectRatio={1}
                 resizeMode="stretch"

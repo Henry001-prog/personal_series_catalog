@@ -10,13 +10,19 @@ import { watchSeries } from '../actions';
 const isEven = number => number % 2 === 0;
 
 class SeriesPage extends React.Component {
+
     componentDidMount() {
         this.props.watchSeries();
     }
+    
     render() {
         const { series, navigation } = this.props;
         if (series === null) {
-            return <ActivityIndicator />;
+            return (
+                <View style={styles.indicator}>
+                    <ActivityIndicator size="large"/>
+                </View>
+            );
         }
 
         return (
@@ -51,6 +57,10 @@ const styles = StyleSheet.create({
     },
     marginBottom: {
         marginBottom: 5,
+    },
+    indicator: {
+        flex: 1,
+        justifyContent: 'center',
     },
 });
 

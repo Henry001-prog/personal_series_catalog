@@ -11,6 +11,7 @@ import {
     KeyboardAvoidingView,
     ActivityIndicator, 
     Alert,
+    Image,
     TouchableOpacity
 } from 'react-native';
 
@@ -24,8 +25,11 @@ import {
     resetForm 
 } from '../actions';
 
+import * as Permissions from "expo-permissions";
+import * as ImagePicker from 'expo-image-picker';
 
 class SerieFormPage extends React.Component { 
+
     constructor(props) {
         super(props);
 
@@ -41,6 +45,43 @@ class SerieFormPage extends React.Component {
             return setWholeSerie(params.serieToEdit);
         }
         return resetForm();
+    }
+
+    async pickImage() {
+
+        
+		const { status } = await Permissions.askAsync(
+			Permissions.CAMERA_ROLL,
+			Permissions.CAMERA
+        ); 
+        
+        /*console.log('usuário deseja selecionar uma imagem');
+
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status !== 'granted') {
+            Alert.alert('Você precisa permitir o acesso!');
+            return;
+        }*/
+
+        
+		const result = await ImagePicker.launchCameraAsync({
+			quality: 0.2,
+			base64: true,
+			allowsEditing: true,
+			aspect: [1, 1], // Android only
+		});
+
+        /*const result = await ImagePicker.launchImageLibraryAsync({
+            quality: 0.3,
+            base64: true,
+            allowsEditing: true,
+            aspect: [1, 1], // Android only
+        });*/
+
+        if(!result.cancelled) {
+            this.props.setField('img64', result.base64);
+            console.log('Aqui temos uma imagem!', result.base64);
+        }
     }
 
     render() {
@@ -63,12 +104,21 @@ class SerieFormPage extends React.Component {
                             onChangeText={value => setField('title', value)}
                         />
                     </FormRow>
+
                     <FormRow>
-                        <TextInput
-                            style={styles.input} 
-                            placeholder="URL da imagem"
-                            value={serieForm.img}
-                            onChangeText={value => setField('img', value)}
+                        { 
+                            serieForm.img64
+                                ? <Image 
+                                    source={{
+                                        uri: `data:image/jpeg;base64,${serieForm.img64}`
+                                    }}
+                                    style={styles.img} /> 
+                                : null 
+                        }
+
+                        <Button 
+                            title="Selecione uma imagem" 
+                            onPress={() => this.pickImage()} 
                         />
                     </FormRow>
         
@@ -189,6 +239,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         //color: '#FF0000',
         //height: 50,
+    },
+    img: {
+        aspectRatio: 1,
+        width: '100%',
     },
 });
 
