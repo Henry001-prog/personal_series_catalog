@@ -50,33 +50,32 @@ class SerieFormPage extends React.Component {
     async pickImage() {
 
         
+		/* Para câmera:
 		const { status } = await Permissions.askAsync(
 			Permissions.CAMERA_ROLL,
 			Permissions.CAMERA
-        ); 
-        
-        /*console.log('usuário deseja selecionar uma imagem');
+		); */
 
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
         if (status !== 'granted') {
             Alert.alert('Você precisa permitir o acesso!');
             return;
-        }*/
+        }
 
         
-		const result = await ImagePicker.launchCameraAsync({
+		/*const result = await ImagePicker.launchCameraAsync({
 			quality: 0.2,
 			base64: true,
 			allowsEditing: true,
 			aspect: [1, 1], // Android only
-		});
+		});*/
 
-        /*const result = await ImagePicker.launchImageLibraryAsync({
+        const result = await ImagePicker.launchImageLibraryAsync({
             quality: 0.3,
             base64: true,
             allowsEditing: true,
             aspect: [1, 1], // Android only
-        });*/
+        });
 
         if(!result.cancelled) {
             this.props.setField('img64', result.base64);
@@ -94,7 +93,7 @@ class SerieFormPage extends React.Component {
         } = this.props;
 
         return (
-            <KeyboardAvoidingView style={{flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}} enabled>
+            <KeyboardAvoidingView style={{backgroundColor: 'white'}} enabled>
                 <ScrollView>
                     <FormRow first>
                         <TextInput
