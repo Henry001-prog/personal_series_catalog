@@ -44,6 +44,7 @@
 </h3>
 
 <h3><p align="center">Screenshots of iPhone screen.</p></h3>
+<br/>
 
 <h3 align="center">
     <p>Splash screen</p>
