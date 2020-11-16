@@ -90,9 +90,3 @@
             "A streetwise, poor young man from Philadelphia is sent by his mother to live with his aunt, uncle and cousins in their Bel-Air mansion."
     }
 ]
-
-/*
-Fiz os procedimentos apresentados no vídeo, mas ficou com um bug que um dos cards ficava por cima e piscando sempre que descia a tela. Dei uma olhada no Firebase e o banco de dados estava por algum motivo. Fui apagar esse segundo e apagou tudo, e não consigo mais inserir dados nele, e agora?
-
-Erro que aparece quando tiro todo o código feito nessa aula e clico em salvar a série criada:
-*/

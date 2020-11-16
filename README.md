@@ -42,3 +42,47 @@
     <p>Form to create series</p>
     <img src="/screenshots/rn9.png" height="480" width="280">
 </h3>
+
+</p>
+
+<h3 align="center">
+    <p>Splash screen</p>
+    <img src="/screenshots/rn1-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Login screen</p>
+    <img src="/screenshots/rn2-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Series listing screen</p>
+    <img src="/screenshots/rn3-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Series details screen</p>
+    <img src="/screenshots/rn4-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Series edit form</p>
+    <img src="/screenshots/rn5-ios.jpg" height="480" width="280">
+    <img src="/screenshots/rn6-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Confirmation alert to delete series</p>
+    <img src="/screenshots/rn7-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Form to create series</p>
+    <img src="/screenshots/rn8-ios.jpg" height="480" width="280">
+    <img src="/screenshots/rn9-ios.jpg" height="480" width="280">
+</h3>
+
+<h3 align="center">
+    <p>Permission of the iPhone camera</p>
+    <img src="/screenshots/rn10-ios.jpg" height="480" width="280">
+</h3>
