@@ -43,7 +43,7 @@
     <img src="/screenshots/rn9.png" height="480" width="280">
 </h3>
 
-</p>
+<p align="center"><h3>Screenshots of iPhone screen</h3></p>
 
 <h3 align="center">
     <p>Splash screen</p>
