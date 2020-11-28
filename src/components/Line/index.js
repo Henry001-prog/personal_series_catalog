@@ -1,20 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+//import { View, Text, StyleSheet } from 'react-native';
+
+import { Container, CellLabel, Content } from './styles';
 
 const Line = ({label = '', content = '-'}) => {
     return (
-        <View style={styles.line}>
-            <Text style={[
-                styles.cell, 
-                styles.label, 
-                label.length > 8 ? styles.longLabel : null
-            ]}>{ label }</Text>
-            <Text style={[styles.cell, styles.content]}>{content}</Text>
-        </View>
+        <Container>
+            <CellLabel label={label.length}>{ label }</CellLabel>
+            <Content>{content}</Content>
+        </Container>
     );
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     line: {
         flexDirection: 'row',
         paddingTop: 3,
@@ -38,6 +36,6 @@ const styles = StyleSheet.create({
     longLabel: {
         fontSize: 12,
     },
-});
+});*/
 
 export default Line;

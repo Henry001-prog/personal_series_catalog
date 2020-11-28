@@ -1,33 +1,29 @@
 import React from 'react';
-import add from '../resources/imgs/add.png';
-import { 
-    View, 
-    Text, 
+import add from '../../resources/imgs/add.png';
+/*import {
     StyleSheet, 
     Dimensions,
     Image,
     TouchableOpacity
-} from 'react-native';
+} from 'react-native';*/
+
+import { AddSeriesCard, Card, Image } from './styles';
 
 // import { Container } from './styles';
 
 const AddSerieCard = ({ serie, isFirstColumn, onNavigate }) => (
-    <TouchableOpacity
+    <AddSeriesCard
         onPress={onNavigate}
-        style={[
-            styles.container,
-            isFirstColumn ? styles.firstColumn : styles.lastColumn
-        ]}>
-        <View style={styles.card}>
+        isFirstColumn={isFirstColumn}>
+        <Card>
             <Image 
                 source={add}
-                style={styles.image}
             />
-        </View>
-    </TouchableOpacity>
+        </Card>
+    </AddSeriesCard>
 );
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     container: {
         // Solução 2
         // flex: .5,
@@ -62,6 +58,6 @@ const styles = StyleSheet.create({
     lastColumn: {
         paddingRight: 10,
     },
-});
+});*/
 
 export default AddSerieCard;
