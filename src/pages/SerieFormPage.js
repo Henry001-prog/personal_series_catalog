@@ -93,7 +93,7 @@ class SerieFormPage extends React.Component {
         } = this.props;
 
         return (
-            <KeyboardAvoidingView style={{backgroundColor: 'white'}} enabled>
+            <KeyboardAvoidingView style={{backgroundColor: 'white', flex: 1}} enabled>
                 <ScrollView>
                     <FormRow first>
                         <TextInput

@@ -1,20 +1,21 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+//import { StyleSheet, View } from 'react-native';
+
+import { Container } from './styles';
 
 const FormRow =  props => {
     const {children, first, last} = props;
     return (
-        <View style={[
-                styles.container, 
-                first ? styles.first : null, 
-                last ? styles.last : null
-        ]}>
+        <Container 
+            first={first}
+            last={last}
+        >
             {children}
-        </View>
+        </Container>
     )
 };
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     container: {
         //alignItems: 'center',
         //justifyContent: 'center',
@@ -30,6 +31,6 @@ const styles = StyleSheet.create({
     last: {
         marginBottom: 10,
     },
-});
+});*/
 
 export default FormRow;
