@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
 export const AddSeriesCard = styled.TouchableOpacity`
     width: 50%;
     padding: ${props => (props.isFirstColumn ? '5px 5px 5px 10px' : '5px 10px 5px 5px')};
-    height: ${Dimensions.get('window').width / 2};
+    height: ${Dimensions.get('window').width / 2}px;
 `;
 
 export const Card = styled.View`

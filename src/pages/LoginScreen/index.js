@@ -4,16 +4,15 @@ import {
     TextInput,
     Text,
     StyleSheet, 
-    Button, 
     ActivityIndicator,
     Alert
 } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 
-import { tryLogin } from '../actions';
+import { tryLogin } from '../../actions';
 
-import FormRow from '../components/FormRow';
+import { Div, Form, Input, Loading, Button, ViewErrorMessage, ErrorMessage } from './styles';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -89,15 +88,15 @@ class LoginPage extends React.Component {
             return null;
 
         return (
-            <View>
-                <Text>{message}</Text>
-            </View>
+            <ViewErrorMessage>
+                <ErrorMessage>{message}</ErrorMessage>
+            </ViewErrorMessage>
         );
     }
 
     renderButton() {
         if (this.state.isLoading)
-            return <ActivityIndicator />;
+            return <Loading />;
         return (
             <Button 
                 title='Entrar' 
@@ -107,35 +106,35 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <FormRow first>
-                    <TextInput
-                        style={styles.input} 
+            <Div>
+                <Form first>
+                    <Input 
                         placeholder="user@email.com"
+                        placeholderTextColor= '#808080' 
                         value={this.state.email}
                         onChangeText={value => this.onChangeHandler('email', value)}
                         keyboardType="email-address"
                         autoCapitalize="none"
                     />
-                </FormRow>
-                <FormRow last>
-                    <TextInput 
-                        style={styles.input} 
-                        placeholder="******" 
+                </Form>
+                <Form last>
+                    <Input
+                        placeholder="******"
+                        placeholderTextColor= '#808080' 
                         secureTextEntry
                         value={this.state.password}
                         onChangeText={value => this.onChangeHandler('password', value)}
                     />
-                </FormRow>
+                </Form>
 
                 {this.renderButton()}
                 {this.renderMesssage()}
-            </View>
+            </Div>
         )
     }
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center', // vertical
@@ -144,6 +143,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingLeft: 10,
         paddingRight: 10,
+        backgroundColor: 'grey',
         //backgroundColor: '#2c2c40' // antes não tinha cor de fundo
         //backgroundColor: '#202036'
     },
@@ -153,12 +153,14 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         width: 300,
         borderWidth: 2,
+        fontSize: 17,
+        borderRadius: 3,
         borderColor: 'transparent',
         borderBottomColor: 'gray',
     },
     button: {
         marginTop: 5,
     },
-});
+});*/
 
 export default connect(null, { tryLogin })(LoginPage);

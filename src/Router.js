@@ -11,6 +11,7 @@ const AppNavigator = createStackNavigator({
         screen: LoginScreen,
         navigationOptions: {
             title: 'Bem-vindo!',
+            headerTitleAlign: 'center',
         }
     },
     
@@ -44,6 +45,7 @@ const AppNavigator = createStackNavigator({
 }, {
     defaultNavigationOptions: {
         title: 'Series',
+        headerTitleAlign: 'center',
         headerTintColor: 'white',
         headerStyle: {
             backgroundColor: '#6ca2f7',

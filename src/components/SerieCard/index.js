@@ -1,38 +1,29 @@
 import React from 'react';
-import { 
-    View, 
-    Text, 
-    StyleSheet, 
-    Dimensions,
-    Image,
-    TouchableOpacity
-} from 'react-native';
 
-// import { Container } from './styles';
+import { SeriesCard, Card, Image, CardTitleWrapper, CardTitle } from './styles';
 
 const SerieCard = ({ serie, isFirstColumn, onNavigate }) => (
-    <TouchableOpacity
+    <SeriesCard
+        isFirstColumn={isFirstColumn}
         onPress={onNavigate}
-        style={[
-            styles.container,
-            isFirstColumn ? styles.firstColumn : styles.lastColumn
-        ]}>
-        <View style={styles.card}>
-            <Image 
+    >
+        <Card>
+            <Image
+                serie={serie.img64}
                 source={{
                     uri: `data:image/jpeg;base64,${serie.img64}`
                 }}
                 aspectRatio={1}
                 resizeMode="stretch"
             />
-            <View style={styles.cardTitleWrapper}>
-                <Text style={styles.cardTitle}>{serie.title}</Text>
-            </View>
-        </View>
-    </TouchableOpacity>
+            <CardTitleWrapper>
+                <CardTitle>{serie.title}</CardTitle>
+            </CardTitleWrapper>
+        </Card>
+    </SeriesCard>
 );
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     container: {
         // Solução 2
         // flex: .5,
@@ -63,10 +54,9 @@ const styles = StyleSheet.create({
         width: '100%',
 
         paddingTop: 10,
-        paddingBottom: 10,
-
-        paddingLeft: 3,
         paddingRight: 3,
+        paddingBottom: 10,
+        paddingLeft: 3,
 
         alignItems: 'center',
     },
@@ -81,6 +71,6 @@ const styles = StyleSheet.create({
     lastColumn: {
         paddingRight: 10,
     },
-});
+});*/
 
 export default SerieCard;
