@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     View, 
     TextInput,
@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import { tryLogin } from '../../actions';
 
 import { Div, Form, Input, Loading, Button, ViewErrorMessage, ErrorMessage } from './styles';
+
+import {showMessage} from "react-native-flash-message";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -63,10 +65,20 @@ class LoginPage extends React.Component {
                     message: ''
                 });
             })
-            .catch(error =>{
+            .catch(error => {
+                showMessage({
+                    message: this.getMessageByErrorCode(error.code),
+                    type: 'danger',
+                    autoHide: true,
+                    duration: 5000,
+                    description: 'Tente novamente',
+                    icon: "danger",
+                    style: {justifyContent: 'center'},
+                  });     
+            }).finally(() => {
                 this.setState({
-                    isLoading: false, 
-                    message: this.getMessageByErrorCode(error.code)
+                    isLoading: false,
+                    message: '',
                 });
             });
     }
@@ -82,7 +94,7 @@ class LoginPage extends React.Component {
         }
     }
 
-    renderMesssage() {
+    /*renderMesssage() {
         const {message} = this.state;
         if (!message)
             return null;
@@ -92,7 +104,7 @@ class LoginPage extends React.Component {
                 <ErrorMessage>{message}</ErrorMessage>
             </ViewErrorMessage>
         );
-    }
+    }*/
 
     renderButton() {
         if (this.state.isLoading)
@@ -128,7 +140,6 @@ class LoginPage extends React.Component {
                 </Form>
 
                 {this.renderButton()}
-                {this.renderMesssage()}
             </Div>
         )
     }
