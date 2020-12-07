@@ -13,6 +13,11 @@
 </h3>
 
 <h3 align="center">
+    <p>Error messages are displayed at the top of the screen in a flash message</p>
+    <img src="/screenshots/rn2-1.png" height="480" width="280">
+</h3>
+
+<h3 align="center">
     <p>Series listing screen</p>
     <img src="/screenshots/rn3.png" height="480" width="280">
 </h3>
