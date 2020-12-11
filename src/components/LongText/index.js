@@ -1,12 +1,10 @@
 import React from 'react';
-import { 
-    View, 
-    Text, 
-    StyleSheet, 
-    TouchableWithoutFeedback, 
+import {  
     LayoutAnimation, 
     NativeModules
 } from 'react-native';
+
+import { LabelContainer, Label, ExpandText, Text } from './styles';
 
 // Android
 if (Platform.OS === 'android') {
@@ -39,25 +37,18 @@ export default class LongText extends React.Component {
         const { label = '', content = '-' } = this.props;
         const { isExpanded } = this.state;
         return (
-            <View style={styles.line}>
-                <Text style={[
-                    styles.cell, 
-                    styles.label,
-                ]}>{ label }</Text>
-                <TouchableWithoutFeedback onPress={() => this.toggleIsExpanded()} >
-                    <Text style={[
-                        styles.cell, 
-                        styles.content,
-                        isExpanded ? styles.expanded : styles.collapsed
-                    ]}>{content}</Text>
-                </TouchableWithoutFeedback>
-            </View>
+            <LabelContainer>
+                <Label>{ label }</Label>
+                <ExpandText onPress={() => this.toggleIsExpanded()} >
+                    <Text isExpanded={isExpanded}>{content}</Text>
+                </ExpandText>
+            </LabelContainer>
         );
     }
     
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     line: {
         paddingTop: 3,
         paddingBottom: 3,
@@ -84,4 +75,4 @@ const styles = StyleSheet.create({
     expanded: {
         flex: 1,
     },
-});
+});*/
