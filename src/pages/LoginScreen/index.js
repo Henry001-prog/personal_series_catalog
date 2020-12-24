@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { 
-    View, 
-    TextInput,
-    Text,
-    StyleSheet, 
-    ActivityIndicator,
-    Alert
-} from 'react-native';
+import { Keyboard } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 
@@ -108,11 +101,11 @@ class LoginPage extends React.Component {
 
     renderButton() {
         if (this.state.isLoading)
-            return <Loading />;
+            return <Loading size='large' color='light-blue'/>;
         return (
             <Button 
                 title='Entrar' 
-                onPress={() => this.tryLogin()}/>
+                onPress={() => {this.tryLogin(); Keyboard.dismiss();}}/>
         );
     }
 

@@ -1,29 +1,21 @@
 import React from 'react';
-import { 
-    StyleSheet, 
-    View, 
-    Text, 
-    TextInput,
+import {
     Picker,
     Slider,
-    Button,
-    ScrollView,
-    KeyboardAvoidingView,
-    ActivityIndicator, 
-    Alert,
-    Image,
-    TouchableOpacity
+    Alert
 } from 'react-native';
+
+import { KeyboardAvoidingView, ScrollView, TextInput, Image, ViewRate, TextRate, ViewButton, Button, ButtonClean, Loading, Text } from './styles';
 
 import { connect } from 'react-redux';
 
-import FormRow from '../components/FormRow';
+import FormRow from '../../components/FormRow';
 import { 
     setField, 
     saveSerie, 
     setWholeSerie, 
     resetForm 
-} from '../actions';
+} from '../../actions';
 
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from 'expo-image-picker';
@@ -94,11 +86,11 @@ class SerieFormPage extends React.Component {
 
         return (
             <KeyboardAvoidingView style={{backgroundColor: 'white', flex: 1}} enabled>
-                <ScrollView>
+                <ScrollView contentContainerStyle={{ padding: 10 }}>
                     <FormRow first>
-                        <TextInput
-                            style={styles.input} 
+                        <TextInput 
                             placeholder="Título"
+                            placeholderTextColor= '#808080'
                             value={serieForm.title}
                             onChangeText={value => setField('title', value)}
                         />
@@ -126,20 +118,20 @@ class SerieFormPage extends React.Component {
                             selectedValue={serieForm.gender}
                             onValueChange={itemValue => setField('gender', itemValue)}>
                             
-                            <Picker.Item label="Policial" value="Policial" />
-                            <Picker.Item label="Comédia" value="Comédia" />
-                            <Picker.Item label="Terror" value="Terror" />
-                            <Picker.Item label="Ficção Científica" value="Ficção Científica" />
-                            <Picker.Item label="Ação" value="Ação" />
-                            <Picker.Item label="Drama" value="Drama" />
+                            <Picker.Item label="Policial" value="Policial" color='#808080' />
+                            <Picker.Item label="Comédia" value="Comédia" color='#808080' />
+                            <Picker.Item label="Terror" value="Terror" color='#808080' />
+                            <Picker.Item label="Ficção Científica" value="Ficção Científica" color='#808080' />
+                            <Picker.Item label="Ação" value="Ação" color='#808080' />
+                            <Picker.Item label="Drama" value="Drama" color='#808080' />
                     </Picker>
                 </FormRow>
         
                 <FormRow>
-                    <View style={styles.sameRow}>
+                    <ViewRate>
                         <Text>Nota:</Text>
                         <Text>{serieForm.rate}</Text>
-                    </View>
+                    </ViewRate>
                     <Slider 
                         onValueChange={value => setField('rate', value)}
                         value={serieForm.rate}
@@ -150,20 +142,19 @@ class SerieFormPage extends React.Component {
         
                 <FormRow>
                         <TextInput
-                            style={styles.input} 
                             placeholder="Descrição"
+                            placeholderTextColor= '#808080'
                             value={serieForm.description}
                             onChangeText={value => setField('description', value)}
                             numberOfLines={4}
                             multiline={true}
                         />
-                    </FormRow>
+                </FormRow>
                     {
                         this.state.isLoading
-                            ? <ActivityIndicator />
-                            : <View style={styles.viewButton}>
+                            ? <Loading color='light-blue' size='large'/>
+                            : <ViewButton>
                                     <Button
-                                        style={styles.button}
                                         title="Salvar" 
                                         onPress={async () => {
                                             this.setState({ isLoading: true });
@@ -176,20 +167,19 @@ class SerieFormPage extends React.Component {
                                                 this.setState({ isLoading: false });
                                             }
                                         }} />  
-                             </View>
+                             </ViewButton>
                     }
 
                     { 
                         serieForm.id
                              ? null
-                             : <View style={styles.viewButton}>
-                                    <Button
-                                        style={styles.buttonClean}
+                             : <ViewButton>
+                                    <ButtonClean
                                         title="Limpar Formulário"
                                         color='#8B0000' 
                                         onPress={() => {resetForm(serieForm)}} 
                                     />  
-                               </View>
+                               </ViewButton>
                     }    
                 </ScrollView>
             </KeyboardAvoidingView>
@@ -199,7 +189,7 @@ class SerieFormPage extends React.Component {
 }
 
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     input: {
         paddingLeft: 5,
         paddingRight: 5,
@@ -243,7 +233,7 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
         width: '100%',
     },
-});
+});*/
 
 function mapStateToProps(state) {
     return {

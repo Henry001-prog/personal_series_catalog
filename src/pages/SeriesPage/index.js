@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { ViewLoading, Loading, Container, ViewList, ViewTop, ViewBottom } from './styles';
 
-import SerieCard from '../components/SerieCard';
+import SerieCard from '../../components/SerieCard';
 
-import AddSerieCard from '../components/AddSerieCard';
+import AddSerieCard from '../../components/AddSerieCard';
 import { connect } from 'react-redux';
-import { watchSeries } from '../actions';
+import { watchSeries } from '../../actions';
 
 const isEven = number => number % 2 === 0;
 
@@ -19,15 +19,15 @@ class SeriesPage extends React.Component {
         const { series, navigation } = this.props;
         if (series === null) {
             return (
-                <View style={styles.indicator}>
-                    <ActivityIndicator size="large"/>
-                </View>
+                <ViewLoading>
+                    <Loading size="large" color='light-blue'/>
+                </ViewLoading>
             );
         }
 
         return (
-            <View>
-                <FlatList
+            <Container>
+                <ViewList
                     data={[...series, { isLast: true }]}
                     renderItem={({ item, index }) => (
                         item.isLast
@@ -43,15 +43,15 @@ class SeriesPage extends React.Component {
                     keyExtractor={item => item.id}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    ListHeaderComponent={props => (<View style={styles.marginTop} />)}
-                    ListFooterComponent={props => (<View style={styles.marginBottom} />)}
+                    ListHeaderComponent={props => (<ViewTop/>)}
+                    ListFooterComponent={props => (<ViewBottom/>)}
                 />
-            </View>
+            </Container>
         );
     }
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     marginTop: {
         marginTop: 5,
     },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-});
+});*/
 
 const mapStateToProps = state => {
     const { series } = state;

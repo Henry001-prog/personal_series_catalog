@@ -1,18 +1,12 @@
 import React from 'react';
-import { 
-    ScrollView, 
-    Text, 
-    StyleSheet, 
-    Image, 
-    Button,
-    View,
-} from 'react-native';
+
+import { ScrollView, Image, ViewButton, Button } from './styles';
 
 import { connect } from 'react-redux';
-import { deleteSerie } from '../actions';
+import { deleteSerie } from '../../actions';
 
-import Line from '../components/Line';
-import LongText from '../components/LongText';
+import Line from '../../components/Line';
+import LongText from '../../components/LongText';
 
 class SerieDetailPage extends React.Component {
     render() {
@@ -22,8 +16,7 @@ class SerieDetailPage extends React.Component {
             <ScrollView>
                 {   
                     serie.img64 
-                        ? <Image 
-                                style={styles.image}
+                        ? <Image
                                 source={{
                                 uri: `data:image/jpeg;base64,${serie.img64}`
                                 }} 
@@ -34,7 +27,7 @@ class SerieDetailPage extends React.Component {
                 <Line label="Gênero" content={serie.gender} />
                 <Line label="Nota" content={serie.rate} />
                 <LongText label="Descrição" content={serie.description} />
-                <View style={styles.button}>
+                <ViewButton style={styles.button}>
                     <Button 
                         title="Editar" 
                         
@@ -42,8 +35,8 @@ class SerieDetailPage extends React.Component {
                             navigation.replace('SerieForm', { serieToEdit: serie })
                         }} 
                     />
-                </View>
-                <View style={styles.button}>
+                </ViewButton>
+                <ViewButton style={styles.button}>
                     <Button 
                         title="Deletar" 
                         color="#FF0004"
@@ -54,19 +47,10 @@ class SerieDetailPage extends React.Component {
                             }
                         }} 
                     />
-                </View>
+                </ViewButton>
             </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    image: {
-        aspectRatio: 1,
-    },
-    button: {
-        padding: 15,
-    },
-});
 
 export default connect(null, { deleteSerie })(SerieDetailPage);
