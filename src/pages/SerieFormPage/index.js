@@ -102,8 +102,7 @@ class SerieFormPage extends React.Component {
                                 ? <Image 
                                     source={{
                                         uri: `data:image/jpeg;base64,${serieForm.img64}`
-                                    }}
-                                    style={styles.img} /> 
+                                    }}/> 
                                 : null 
                         }
 

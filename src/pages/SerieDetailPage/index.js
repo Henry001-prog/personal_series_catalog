@@ -13,7 +13,7 @@ class SerieDetailPage extends React.Component {
         const { navigation } = this.props;
         const { serie } = navigation.state.params;
         return(
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ backgroundColor: '#595959' }}>
                 {   
                     serie.img64 
                         ? <Image
@@ -27,7 +27,7 @@ class SerieDetailPage extends React.Component {
                 <Line label="Gênero" content={serie.gender} />
                 <Line label="Nota" content={serie.rate} />
                 <LongText label="Descrição" content={serie.description} />
-                <ViewButton style={styles.button}>
+                <ViewButton>
                     <Button 
                         title="Editar" 
                         
@@ -36,7 +36,7 @@ class SerieDetailPage extends React.Component {
                         }} 
                     />
                 </ViewButton>
-                <ViewButton style={styles.button}>
+                <ViewButton>
                     <Button 
                         title="Deletar" 
                         color="#FF0004"
