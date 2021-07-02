@@ -4,24 +4,27 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 
 import { tryLogin } from '../../actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Div, Form, Input, Loading, Button, ViewErrorMessage, ErrorMessage } from './styles';
 
 import {showMessage} from "react-native-flash-message";
 
-class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
+export default function LoginPage({ navigation} ) {
+    const [isLoading, setIsLoading] = useState(false);
 
-        this.state = {
-            email: '',
-            password: '',
-            isLoading: false,
-            message: '',
-        }
-    }
+    const [message, setMessage] = useState('');
 
-    componentDidMount() {
+    const [email, setEmail] = useState('');
+    console.log('email:', email);
+
+    const [password, setPassword] = useState('');
+    console.log('password:', password);
+    
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
         const firebaseConfig = {
             apiKey: "AIzaSyCsNst_gYIg6AUwqqx-YVRZepywsNL_xI0",
             authDomain: "series-b92be.firebaseapp.com",
@@ -31,52 +34,29 @@ class LoginPage extends React.Component {
             messagingSenderId: "828328217426",
             appId: "1:828328217426:web:52c7133173d11a64a3888b",
             measurementId: "G-EP4S5RF9SK"
-          };
+        };
           // Initialize Firebase
-          if (!firebase.apps.length) {
+        if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
-          }
+        }
+    }, []);
+
+    function inputEmail(value) {
+        //const fields = {...email.field};
+        email = value;
+        setEmail(email);
+        console.log('email:', email)
     }
 
-    onChangeHandler(field, value) {
-        this.setState({
-            [field]: value
-        });
+    function inputPassword(value) {
+        //const fields = {...stateData2.field};
+        password = value;
+        setPassword(password);
+        console.log('password:', password)
     }
+    
 
-    tryLogin() {
-        this.setState({isLoading: true, message: ''});
-        const {email, password} = this.state;
-
-        this.props.tryLogin({ email, password })
-            .then(user => {
-                if (user) {
-                    return this.props.navigation.replace('Main');
-                }
-                this.setState({
-                    isLoading: false,
-                    message: ''
-                });
-            })
-            .catch(error => {
-                showMessage({
-                    message: this.getMessageByErrorCode(error.code),
-                    type: 'danger',
-                    autoHide: true,
-                    duration: 5000,
-                    description: 'Tente novamente',
-                    icon: "danger",
-                    style: {justifyContent: 'center'},
-                  });     
-            }).finally(() => {
-                this.setState({
-                    isLoading: false,
-                    message: '',
-                });
-            });
-    }
-
-    getMessageByErrorCode(errorCode) {
+    function getMessageByErrorCode(errorCode) {
         switch (errorCode) {
             case 'auth/wrong-password':
                 return 'Senha incorreta';
@@ -88,7 +68,7 @@ class LoginPage extends React.Component {
     }
 
     /*renderMesssage() {
-        const {message} = this.state;
+        const {message} = .state;
         if (!message)
             return null;
 
@@ -99,46 +79,44 @@ class LoginPage extends React.Component {
         );
     }*/
 
-    renderButton() {
-        if (this.state.isLoading)
+    function renderButton() {
+        if (isLoading)
             return <Loading size='large' color='light-blue'/>;
         return (
             <Button 
                 title='Entrar' 
-                onPress={() => {this.tryLogin(); Keyboard.dismiss();}}/>
+                onPress={() => {dispatch(tryLogin(email, password, navigation, setIsLoading)); Keyboard.dismiss();}}/>
         );
     }
 
-    render() {
-        return (
-            <Div>
-                <Form first>
-                    <Input 
-                        placeholder="user@email.com"
-                        placeholderTextColor= '#808080' 
-                        value={this.state.email}
-                        onChangeText={value => this.onChangeHandler('email', value)}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
-                </Form>
-                <Form last>
-                    <Input
-                        placeholder="******"
-                        placeholderTextColor= '#808080' 
-                        secureTextEntry
-                        value={this.state.password}
-                        onChangeText={value => this.onChangeHandler('password', value)}
-                    />
-                </Form>
+    return (
+        <Div>
+            <Form first>
+                <Input 
+                    placeholder="user@email.com"
+                    placeholderTextColor= '#808080' 
+                    value={email}
+                    onChangeText={(value) => setEmail(value)}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                />
+            </Form>
+            <Form last>
+                <Input
+                    placeholder="******"
+                    placeholderTextColor= '#808080' 
+                    secureTextEntry
+                    value={password}
+                    onChangeText={(value) => setPassword(value)}
+                />
+            </Form>
 
-                {this.renderButton()}
-            </Div>
-        )
-    }
+            {renderButton()}
+        </Div>
+    );
 }
 
-/*const styles = StyleSheet.create({
+/*const styles = StyleSheetcreate({
     container: {
         flex: 1,
         alignItems: 'center', // vertical
@@ -167,4 +145,4 @@ class LoginPage extends React.Component {
     },
 });*/
 
-export default connect(null, { tryLogin })(LoginPage);
+//export default connect(null, { tryLogin })(LoginPage);

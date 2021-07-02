@@ -5,7 +5,7 @@ export const ScrollView = styled.ScrollView`
 `;
 
 export const Image = styled.Image`
-    aspect-ratio: 1px;
+    aspect-ratio: 1;
 `;
 
 export const ViewButton = styled.View`

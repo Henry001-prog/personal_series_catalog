@@ -7,11 +7,11 @@ import {
 import { LabelContainer, Label, ExpandText, Text } from './styles';
 
 // Android
-if (Platform.OS === 'android') {
+
     if (NativeModules.UIManager.setLayoutAnimationEnabledExperimental) {
       NativeModules.UIManager.setLayoutAnimationEnabledExperimental(true);
     }
-  }
+  
 
 export default class LongText extends React.Component {
     constructor(props) {

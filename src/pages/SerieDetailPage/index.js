@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { ScrollView, Image, ViewButton, Button } from './styles';
 
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { deleteSerie } from '../../actions';
 
 import Line from '../../components/Line';
 import LongText from '../../components/LongText';
 
-class SerieDetailPage extends React.Component {
-    render() {
-        const { navigation } = this.props;
+function SerieDetailPage({navigation, deleteSerie}) {
+    //const [ navigation, isSetNavigation ] = useState(props);
+    //const [ serie, isSetSerie ] = useState(navigation.state.params);
+
+
+    
+        //const { navigation } = props;
         const { serie } = navigation.state.params;
+        //const { deleteSerie } = props;
         return(
             <ScrollView contentContainerStyle={{ backgroundColor: '#595959' }}>
                 {   
@@ -41,7 +46,7 @@ class SerieDetailPage extends React.Component {
                         title="Deletar" 
                         color="#FF0004"
                         onPress={async () => {
-                            const hasDeleted = await this.props.deleteSerie(serie);
+                            const hasDeleted = await deleteSerie(serie);
                             if (hasDeleted) {
                                 navigation.goBack();
                             }
@@ -49,8 +54,8 @@ class SerieDetailPage extends React.Component {
                     />
                 </ViewButton>
             </ScrollView>
-        );
-    }
-}
+        )
+    
+};
 
 export default connect(null, { deleteSerie })(SerieDetailPage);

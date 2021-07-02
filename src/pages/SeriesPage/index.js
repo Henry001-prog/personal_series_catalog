@@ -9,6 +9,8 @@ import { watchSeries } from '../../actions';
 
 const isEven = number => number % 2 === 0;
 
+
+
 class SeriesPage extends React.Component {
 
     componentDidMount() {
@@ -17,6 +19,7 @@ class SeriesPage extends React.Component {
     
     render() {
         const { series, navigation } = this.props;
+        console.log(series);
         if (series === null) {
             return (
                 <ViewLoading>
