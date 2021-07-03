@@ -12,7 +12,7 @@ export const Card = styled.View`
 `;
 
 export const Image = styled.Image.attrs(props => ({
-    src: props.serie,
+    
 }))``;
 
 export const CardTitleWrapper = styled.View`

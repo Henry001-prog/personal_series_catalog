@@ -54,3 +54,16 @@ export const tryLogin = (email, password, navigation, setIsLoading) => async dis
         return await Promise.reject(error);
     }
 }
+
+
+export const logout = (navigation) => async dispatch => {
+    try {
+        const tryLogout = firebase.auth().signOut();
+        const action = userLogout(tryLogout);
+        dispatch(action);
+        navigation.replace('Login');
+    } catch (error) {
+        Alert.alert("Não foi possível carregar os dados!");
+        return;
+    }
+}

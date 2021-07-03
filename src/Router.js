@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -5,6 +7,8 @@ import LoginScreen from './pages/LoginScreen';
 import SeriesPage from './pages/SeriesPage';
 import SerieDetailPage from './pages/SerieDetailPage';
 import SerieFormPage from './pages/SerieFormPage';
+
+import { View, TouchableOpacity, Text } from 'react-native';
 
 const AppNavigator = createStackNavigator({
     'Login': {
@@ -16,7 +20,7 @@ const AppNavigator = createStackNavigator({
     },
     
     'Main': {
-        screen: SeriesPage
+        screen: SeriesPage,
     },
     'SerieDetail': {
             screen: SerieDetailPage,
@@ -49,8 +53,6 @@ const AppNavigator = createStackNavigator({
         headerTintColor: 'white',
         headerStyle: {
             backgroundColor: '#6ca2f7',
-            borderBottomWidth: 1,
-            borderBottomColor: '#C5C5C5',
         },
         headerTitleStyle: {
             color: 'white',

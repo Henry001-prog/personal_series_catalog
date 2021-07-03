@@ -16,12 +16,18 @@ export const watchSeries = () => {
             .ref(`/users/${currentUser.uid}/series`)
             .on('value', snapshot => {
                 const series = snapshot.val();
+            
+                const keys = Object.keys(series);
+                const seriesWithKeys = keys.map(id => {
+                    return { ...series[id], id }
+                });
+                //return { series: seriesWithKeys };
 
                 if (!series) {
 					return dispatch(setSeries({}))
 				}
 
-                const action = setSeries(series);
+                const action = setSeries(seriesWithKeys);
                 dispatch(action)
             });
     }
