@@ -115,34 +115,3 @@ export default function LoginPage({ navigation} ) {
         </Div>
     );
 }
-
-/*const styles = StyleSheetcreate({
-    container: {
-        flex: 1,
-        alignItems: 'center', // vertical
-        justifyContent: 'center', // horizontal
-        flexDirection: 'column', // vai alinhar verticalmente
-        paddingHorizontal: 20,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: 'grey',
-        //backgroundColor: '#2c2c40' // antes não tinha cor de fundo
-        //backgroundColor: '#202036'
-    },
-    input: {
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 5,
-        width: 300,
-        borderWidth: 2,
-        fontSize: 17,
-        borderRadius: 3,
-        borderColor: 'transparent',
-        borderBottomColor: 'gray',
-    },
-    button: {
-        marginTop: 5,
-    },
-});*/
-
-//export default connect(null, { tryLogin })(LoginPage);
