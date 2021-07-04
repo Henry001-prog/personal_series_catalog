@@ -11,15 +11,13 @@ import { Div, Form, Input, Loading, Button, ViewErrorMessage, ErrorMessage } fro
 import {showMessage} from "react-native-flash-message";
 
 export default function LoginPage({ navigation} ) {
+
     const [isLoading, setIsLoading] = useState(false);
-
     const [message, setMessage] = useState('');
-
     const [email, setEmail] = useState('');
-    console.log('email:', email);
-
+    //console.log('email:', email);
     const [password, setPassword] = useState('');
-    console.log('password:', password);
+    //console.log('password:', password);
     
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Picker,
     Slider,
@@ -7,7 +7,7 @@ import {
 
 import { KeyboardAvoidingView, ScrollView, TextInput, Image, ViewRate, TextRate, ViewButton, Button, ButtonClean, Loading, Text } from './styles';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import FormRow from '../../components/FormRow';
 import { 
@@ -20,26 +20,25 @@ import {
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from 'expo-image-picker';
 
-class SerieFormPage extends React.Component { 
+export default function SerieFormPage({ navigation }) { 
 
-    constructor(props) {
-        super(props);
+    const [isLoading, setIsLoading] = useState(false);
 
-        this.state = {
-            isLoading: false,
-        }
-    }
+    const serieForm = useSelector((state) => state.serieForm);
+    const dispatch = useDispatch();
 
-    componentDidMount() {
-        const { navigation, setWholeSerie, resetForm } = this.props;
+    useEffect(() => {
+        //dispatch(setWholeSerie());
+        //dispatch(resetForm());
         const { params } = navigation.state;
         if (params && params.serieToEdit) {
-            return setWholeSerie(params.serieToEdit);
+            dispatch(setWholeSerie(params.serieToEdit));
+        } else {
+            dispatch(resetForm());
         }
-        return resetForm();
-    }
+    }, [dispatch]);
 
-    async pickImage() {
+    async function pickImage() {
 
         
 		/* Para câmera:
@@ -70,181 +69,110 @@ class SerieFormPage extends React.Component {
         });
 
         if(!result.cancelled) {
-            this.props.setField('img64', result.base64);
+            dispatch(setField('img64', result.base64));
             console.log('Aqui temos uma imagem!', result.base64);
         }
     }
 
-    render() {
-        const {
-            serieForm, 
-            setField, 
-            saveSerie, 
-            navigation,
-            resetForm, 
-        } = this.props;
-
-        return (
-            <KeyboardAvoidingView style={{backgroundColor: 'white', flex: 1}} enabled>
-                <ScrollView contentContainerStyle={{ padding: 10 }}>
-                    <FormRow first>
-                        <TextInput 
-                            placeholder="Título"
-                            placeholderTextColor= '#808080'
-                            value={serieForm.title}
-                            onChangeText={value => setField('title', value)}
-                        />
-                    </FormRow>
-
-                    <FormRow>
-                        { 
-                            serieForm.img64
-                                ? <Image 
-                                    source={{
-                                        uri: `data:image/jpeg;base64,${serieForm.img64}`
-                                    }}/> 
-                                : null 
-                        }
-
-                        <Button 
-                            title="Selecione uma imagem" 
-                            onPress={() => this.pickImage()} 
-                        />
-                    </FormRow>
-        
-                    <FormRow>
-                        <Picker
-                            selectedValue={serieForm.gender}
-                            onValueChange={itemValue => setField('gender', itemValue)}>
-                            
-                            <Picker.Item label="Policial" value="Policial" color='#808080' />
-                            <Picker.Item label="Comédia" value="Comédia" color='#808080' />
-                            <Picker.Item label="Terror" value="Terror" color='#808080' />
-                            <Picker.Item label="Ficção Científica" value="Ficção Científica" color='#808080' />
-                            <Picker.Item label="Ação" value="Ação" color='#808080' />
-                            <Picker.Item label="Drama" value="Drama" color='#808080' />
-                    </Picker>
+    return (
+        <KeyboardAvoidingView style={{backgroundColor: 'white', flex: 1}} enabled>
+            <ScrollView contentContainerStyle={{ padding: 10 }}>
+                <FormRow first>
+                    <TextInput 
+                        placeholder="Título"
+                        placeholderTextColor= '#808080'
+                        value={serieForm.title}
+                        onChangeText={value => dispatch(setField('title', value))}
+                    />
                 </FormRow>
-        
+
                 <FormRow>
-                    <ViewRate>
-                        <Text>Nota:</Text>
-                        <Text>{serieForm.rate}</Text>
-                    </ViewRate>
-                    <Slider 
-                        onValueChange={value => setField('rate', value)}
-                        value={serieForm.rate}
-                        minimumValue={0}
-                        maximumValue={100}
-                        step={5} />
-                </FormRow>
-        
-                <FormRow>
-                        <TextInput
-                            placeholder="Descrição"
-                            placeholderTextColor= '#808080'
-                            value={serieForm.description}
-                            onChangeText={value => setField('description', value)}
-                            numberOfLines={4}
-                            multiline={true}
-                        />
-                </FormRow>
-                    {
-                        this.state.isLoading
-                            ? <Loading color='light-blue' size='large'/>
-                            : <ViewButton>
-                                    <Button
-                                        title="Salvar" 
-                                        onPress={async () => {
-                                            this.setState({ isLoading: true });
-                                            try {
-                                                await saveSerie(serieForm);
-                                                navigation.goBack();
-                                            } catch (error) {
-                                                Alert.alert('Erro!', error.message);
-                                            } finally{
-                                                this.setState({ isLoading: false });
-                                            }
-                                        }} />  
-                             </ViewButton>
+                    { 
+                        serieForm.img64
+                            ? <Image 
+                                source={{
+                                    uri: `data:image/jpeg;base64,${serieForm.img64}`
+                                }}/> 
+                            : null 
                     }
 
-                    { 
-                        serieForm.id
-                             ? null
-                             : <ViewButton>
-                                    <ButtonClean
-                                        title="Limpar Formulário"
-                                        color='#8B0000' 
-                                        onPress={() => {resetForm(serieForm)}} 
-                                    />  
-                               </ViewButton>
-                    }    
-                </ScrollView>
-            </KeyboardAvoidingView>
-        );
-    }
+                    <Button 
+                        title="Selecione uma imagem" 
+                        onPress={() => pickImage()} 
+                    />
+                </FormRow>
+    
+                <FormRow>
+                    <Picker
+                        selectedValue={serieForm.gender}
+                        onValueChange={itemValue => dispatch(setField('gender', itemValue))}>
+                        
+                        <Picker.Item label="Policial" value="Policial" color='#808080' />
+                        <Picker.Item label="Comédia" value="Comédia" color='#808080' />
+                        <Picker.Item label="Terror" value="Terror" color='#808080' />
+                        <Picker.Item label="Ficção Científica" value="Ficção Científica" color='#808080' />
+                        <Picker.Item label="Ação" value="Ação" color='#808080' />
+                        <Picker.Item label="Drama" value="Drama" color='#808080' />
+                </Picker>
+            </FormRow>
+    
+            <FormRow>
+                <ViewRate>
+                    <Text>Nota:</Text>
+                    <Text>{serieForm.rate}</Text>
+                </ViewRate>
+                <Slider 
+                    onValueChange={value => dispatch(setField('rate', value))}
+                    value={serieForm.rate}
+                    minimumValue={0}
+                    maximumValue={100}
+                    step={5} />
+            </FormRow>
+    
+            <FormRow>
+                    <TextInput
+                        placeholder="Descrição"
+                        placeholderTextColor= '#808080'
+                        value={serieForm.description}
+                        onChangeText={value => dispatch(setField('description', value))}
+                        numberOfLines={4}
+                        multiline={true}
+                    />
+            </FormRow>
+                {
+                    isLoading
+                        ? <Loading color='light-blue' size='large'/>
+                        : <ViewButton>
+                                <Button
+                                    title="Salvar" 
+                                    onPress={async () => {
+                                        setIsLoading(true);
+                                        try {
+                                            await dispatch(saveSerie(serieForm));
+                                            navigation.goBack();
+                                        } catch (error) {
+                                            Alert.alert('Erro!', error.message);
+                                        } finally{
+                                            setIsLoading(false);
+                                        }
+                                    }} />  
+                            </ViewButton>
+                }
+
+                { 
+                    serieForm.id
+                            ? null
+                            : <ViewButton>
+                                <ButtonClean
+                                    title="Limpar Formulário"
+                                    color='#8B0000' 
+                                    onPress={() => {dispatch(resetForm(serieForm))}} 
+                                />  
+                            </ViewButton>
+                }    
+            </ScrollView>
+        </KeyboardAvoidingView>
+    );
+    
     
 }
-
-
-/*const styles = StyleSheet.create({
-    input: {
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 5,
-        width: 340,
-        borderWidth: 2,
-        borderColor: 'transparent',
-        borderBottomColor: 'gray',
-    },
-    sameRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
-    },
-    button: {
-        //marginTop: 10,
-        //backgroundColor: '#1E90FF',
-        alignSelf: 'stretch',
-        //marginHorizontal: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        //height: 50,
-    },
-    viewButton: {
-        padding: 15,
-        //height: 150
-    },
-    buttonClean: {
-        //marginTop: 10,
-        //backgroundColor: '#1E90FF',
-        alignSelf: 'stretch',
-        //marginHorizontal: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        //color: '#FF0000',
-        //height: 50,
-    },
-    img: {
-        aspectRatio: 1,
-        width: '100%',
-    },
-});*/
-
-function mapStateToProps(state) {
-    return {
-        serieForm: state.serieForm
-    }
-}
-
-const mapDispatchToProps = {
-    setField,
-    saveSerie,
-    setWholeSerie,
-    resetForm,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SerieFormPage);

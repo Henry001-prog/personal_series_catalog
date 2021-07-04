@@ -45,6 +45,7 @@ export const Button = styled.Button`
    align-self: stretch;
    justify-content: center;
    align-items: center;
+   height: 50px;
 `;
 
 export const ButtonClean = styled(Button)``;

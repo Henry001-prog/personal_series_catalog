@@ -50,7 +50,7 @@ export const saveSerie = serie => {
 }
 */
 
-export const deleteSerie = serie => {
+export const deleteSerie = (serie, navigation) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             Alert.alert(
@@ -72,6 +72,7 @@ export const deleteSerie = serie => {
                                 .ref(`/users/${currentUser.uid}/series/${serie.id}`)
                                 .remove();
                             resolve(true);
+                            navigation.goBack();
                         } catch(e) {
                             reject(e);
                         }

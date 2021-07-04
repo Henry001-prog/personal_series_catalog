@@ -7,7 +7,6 @@ import SerieCard from '../../components/SerieCard';
 import AddSerieCard from '../../components/AddSerieCard';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { connect } from 'react-redux';
 import { watchSeries } from '../../actions';
 import { logout } from '../../actions';
 
@@ -90,35 +89,3 @@ export default function SeriesPage({ navigation }) {
         </Container>
     );
 }
-
-
-/*const styles = StyleSheet.create({
-    marginTop: {
-        marginTop: 5,
-    },
-    marginBottom: {
-        marginBottom: 5,
-    },
-    indicator: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-});*/
-
-/*const mapStateToProps = state => {
-    const { series } = state;
-    if (series === null) {
-        return { series }
-    }
-
-    const keys = Object.keys(series);
-    const seriesWithKeys = keys.map(id => {
-        return { ...series[id], id }
-    });
-    return { series: seriesWithKeys };
-}*/
-
-/*export default connect(
-    mapStateToProps, 
-    { watchSeries }
-)(SeriesPage);*/
