@@ -8,7 +8,7 @@ import SeriesPage from './pages/SeriesPage';
 import SerieDetailPage from './pages/SerieDetailPage';
 import SerieFormPage from './pages/SerieFormPage';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from '../src/store/actions';
 
 import { View, TouchableOpacity, Text } from 'react-native';
@@ -39,7 +39,7 @@ export default function App() {
                 }
             >
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: 'Bem-vindo!', headerTitleAlign: 'center' }} />
-                <Stack.Screen name="Main" component={SeriesPage} options={({navigation}) => ({
+                <Stack.Screen name="Main" component={SeriesPage} options={({ navigation }) => ({
                     headerTitle: 'Bem-vindo!',
                     headerRight: () => (
                         <View style={{paddingRight: 10, flexDirection: 'row', justifyContent: 'center' }}>
@@ -70,11 +70,10 @@ export default function App() {
                         </View>
                     )
                 }) } />
-                <Stack.Screen name="SerieDetail" component={SerieDetailPage} options={({ navigation, route }) => ({
-                    //const { serie } = navigation.state.params;
+                <Stack.Screen name="SerieDetail" component={SerieDetailPage} options={({ route }) => ({
                     title: route.params.serie.title,
                 }) } />
-                <Stack.Screen name="SerieForm" component={SerieFormPage} options={({ navigation, route }) => {
+                <Stack.Screen name="SerieForm" component={SerieFormPage} options={({ route }) => {
                     if (route.params && route.params.serieToEdit) {
                         return {
                             title: route.params.serieToEdit.title,
