@@ -7,8 +7,8 @@ import SerieCard from '../../components/SerieCard';
 import AddSerieCard from '../../components/AddSerieCard';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { watchSeries } from '../../actions';
-import { logout } from '../../actions';
+import { watchSeries } from '../../store/actions';
+import { logout } from '../../store/actions';
 
 
 const isEven = number => number % 2 === 0;
@@ -25,13 +25,13 @@ export default function SeriesPage({ navigation }) {
             dispatch(watchSeries());
         }
         if (series === null) {
-            return { series }
+            series
         }
         return () => { unmounted = true };
     }, [dispatch]);
 
     //const { series, navigation } = this.props;
-    console.log(series);
+    //console.log(series);
 
     if (series === null) {
         return (
@@ -62,30 +62,6 @@ export default function SeriesPage({ navigation }) {
                 ListHeaderComponent={props => (<ViewTop/>)}
                 ListFooterComponent={props => (<ViewBottom/>)}
             />
-            <View style={{paddingRight: 10, flexDirection: 'row', justifyContent: 'center', paddingBottom: 10 }}>
-                <TouchableOpacity
-                    style={{ 
-                        backgroundColor: '#87CEFA',
-                        borderRadius: 25,
-                        paddingTop: 5,
-                        height: 40, 
-                        width: 85,
-                    }}
-                    onPress={() => dispatch(logout(navigation))}>
-                    <Text
-                        style={{
-                        fontSize: 18,
-                        color: 'white',
-                        flexDirection: 'row',
-                        textAlign: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        
-                        }}>
-                        Logout
-                    </Text>
-                </TouchableOpacity>
-            </View>
         </Container>
     );
 }

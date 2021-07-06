@@ -5,7 +5,18 @@ import {
     Alert
 } from 'react-native';
 
-import { KeyboardAvoidingView, ScrollView, TextInput, Image, ViewRate, TextRate, ViewButton, Button, ButtonClean, Loading, Text } from './styles';
+import { 
+    KeyboardAvoidingView, 
+    ScrollView, 
+    TextInput, 
+    Image, 
+    ViewRate, 
+    ViewButton, 
+    Button, 
+    ButtonClean, 
+    Loading, 
+    Text 
+} from './styles';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,12 +26,13 @@ import {
     saveSerie, 
     setWholeSerie, 
     resetForm 
-} from '../../actions';
+} from '../../store/actions';
 
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from 'expo-image-picker';
+import { Camera } from 'expo-camera';
 
-export default function SerieFormPage({ navigation }) { 
+export default function SerieFormPage({ navigation, route }) { 
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,7 +42,7 @@ export default function SerieFormPage({ navigation }) {
     useEffect(() => {
         //dispatch(setWholeSerie());
         //dispatch(resetForm());
-        const { params } = navigation.state;
+        const { params } = route;
         if (params && params.serieToEdit) {
             dispatch(setWholeSerie(params.serieToEdit));
         } else {

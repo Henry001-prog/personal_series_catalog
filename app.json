@@ -8,7 +8,6 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/tv-show-mdpi.png",
     "splash": {
       "image": "./assets/tv-show-mdpi.png",

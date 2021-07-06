@@ -3,10 +3,18 @@ import { Keyboard } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 
-import { tryLogin } from '../../actions';
+import { tryLogin } from '../../store/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Div, Form, Input, Loading, Button, ViewErrorMessage, ErrorMessage } from './styles';
+import { 
+    Div, 
+    Form, 
+    Input, 
+    Loading, 
+    Button, 
+    ViewErrorMessage, 
+    ErrorMessage 
+} from './styles';
 
 import {showMessage} from "react-native-flash-message";
 
@@ -38,20 +46,6 @@ export default function LoginPage({ navigation} ) {
             firebase.initializeApp(firebaseConfig);
         }
     }, []);
-
-    function inputEmail(value) {
-        //const fields = {...email.field};
-        email = value;
-        setEmail(email);
-        console.log('email:', email)
-    }
-
-    function inputPassword(value) {
-        //const fields = {...stateData2.field};
-        password = value;
-        setPassword(password);
-        console.log('password:', password)
-    }
     
 
     function getMessageByErrorCode(errorCode) {

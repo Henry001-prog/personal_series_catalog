@@ -23,7 +23,7 @@ export const TextInput = styled.TextInput`
 `;
 
 export const Image = styled.Image`
-    aspect-ratio: 1px;
+    aspect-ratio: 1;
     width: 100%;
 `;
 
@@ -45,7 +45,6 @@ export const Button = styled.Button`
    align-self: stretch;
    justify-content: center;
    align-items: center;
-   height: 50px;
 `;
 
 export const ButtonClean = styled(Button)``;

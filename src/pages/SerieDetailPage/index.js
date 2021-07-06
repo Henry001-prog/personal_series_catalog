@@ -3,16 +3,16 @@ import React from 'react';
 import { ScrollView, Image, ViewButton, Button } from './styles';
 
 import { useDispatch } from 'react-redux';
-import { deleteSerie } from '../../actions';
+import { deleteSerie } from '../../store/actions';
 
 import Line from '../../components/Line';
 import LongText from '../../components/LongText';
 
-export default function SerieDetailPage({ navigation }) {
+export default function SerieDetailPage({ navigation, route }) {
 
     const dispatch = useDispatch();
     
-    const { serie } = navigation.state.params;
+    const { serie } = route.params;
     return(
         <ScrollView contentContainerStyle={{ backgroundColor: '#595959' }}>
             {   

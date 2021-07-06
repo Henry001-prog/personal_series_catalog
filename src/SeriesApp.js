@@ -9,7 +9,7 @@ import FlashMessage from "react-native-flash-message";
 
 import { composeWithDevTools } from 'remote-redux-devtools';
 
-import rootReducer from './reducers';
+import rootReducer from './store/reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
