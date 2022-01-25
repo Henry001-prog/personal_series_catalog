@@ -59,18 +59,6 @@ export default function LoginPage({ navigation} ) {
         }
     }
 
-    /*renderMesssage() {
-        const {message} = .state;
-        if (!message)
-            return null;
-
-        return (
-            <ViewErrorMessage>
-                <ErrorMessage>{message}</ErrorMessage>
-            </ViewErrorMessage>
-        );
-    }*/
-
     function renderButton() {
         if (isLoading)
             return <Loading size='large' color='light-blue'/>;
