@@ -12,6 +12,7 @@ import {
     Input, 
     Loading, 
     Button, 
+    TextButton,
     ViewErrorMessage, 
     ErrorMessage 
 } from './styles';
@@ -65,7 +66,9 @@ export default function LoginPage({ navigation} ) {
         return (
             <Button 
                 title='Entrar' 
-                onPress={() => {dispatch(tryLogin(email, password, navigation, setIsLoading)); Keyboard.dismiss();}}/>
+                onPress={() => {dispatch(tryLogin(email, password, navigation, setIsLoading)); Keyboard.dismiss();}}>
+                    <TextButton>Entrar</TextButton>
+                </Button>
         );
     }
 
@@ -74,7 +77,7 @@ export default function LoginPage({ navigation} ) {
             <Form first>
                 <Input 
                     placeholder="user@email.com"
-                    placeholderTextColor= '#808080' 
+                    placeholderTextColor= '#DCDCDC'
                     value={email}
                     onChangeText={(value) => setEmail(value)}
                     keyboardType="email-address"
@@ -84,7 +87,7 @@ export default function LoginPage({ navigation} ) {
             <Form last>
                 <Input
                     placeholder="******"
-                    placeholderTextColor= '#808080' 
+                    placeholderTextColor= '#DCDCDC' 
                     secureTextEntry
                     value={password}
                     onChangeText={(value) => setPassword(value)}
