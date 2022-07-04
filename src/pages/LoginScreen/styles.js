@@ -10,7 +10,7 @@ export const Div = styled.View.attrs({
     flex-direction: column; 
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #595959;
+    background-color: #778899;
 `;
 
 export const Form = styled(Container)`
