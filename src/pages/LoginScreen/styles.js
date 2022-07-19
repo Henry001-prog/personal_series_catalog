@@ -16,7 +16,7 @@ export const Div = styled.View.attrs({
   flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #778899;
+  background-color: #252535;
 `;
 
 export const Form = styled(Container)`
@@ -35,9 +35,10 @@ export const Input = styled.TextInput.attrs({
   border-color: transparent;
   width: ${width < 321 ? "285px" : "330px"};
   border-radius: 7px;
-  background-color: white;
+  background-color: #dce4f5;
+  opacity: 0.7;
   align-items: center;
-  color: black;
+  color: #2b2c2e;
   font-size: 17px;
   height: 60px;
 `;
@@ -48,19 +49,19 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   margin-top: 50px;
   align-items: center;
-  border-radius: 33px;
-  width: 200px;
-  background-color: lightblue;
+  border-radius: 10px;
+  width: 339px;
+  background-color: #007fff;
   height: 55px;
   border: 1px solid #d0d0d0;
 `;
 
 export const TextButton = styled.Text`
-    font-size: 17px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    color: white;
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  color: white;
 `;
 
 export const ViewErrorMessage = styled.View`

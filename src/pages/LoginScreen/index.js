@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Keyboard } from "react-native";
 import firebase from "firebase";
 import { connect } from "react-redux";
 
-import { tryLogin } from "../../store/actions";
+// import { tryLogin } from "../../store/actions";
+import { tryLogin } from "../../storeJotai/userAtom";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -27,8 +28,7 @@ export default function LoginPage({ navigation }) {
   const [password, setPassword] = useState("");
   //console.log('password:', password);
 
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const input2Ref = useRef();
 
   useEffect(() => {
     const firebaseConfig = {
@@ -64,7 +64,7 @@ export default function LoginPage({ navigation }) {
       <Button
         title="Entrar"
         onPress={() => {
-          dispatch(tryLogin(email, password, navigation, setIsLoading));
+          tryLogin(email, password, navigation, setIsLoading);
           Keyboard.dismiss();
         }}
       >
@@ -78,9 +78,12 @@ export default function LoginPage({ navigation }) {
       <Form first>
         <Input
           placeholder="user@email.com"
-          placeholderTextColor="#DCDCDC"
+          placeholderTextColor="#808080"
           value={email}
+          returnKeyType="next"
+          blurOnSubmit={false}
           onChangeText={(value) => setEmail(value)}
+          onSubmitEditing={() => input2Ref.current.focus()}
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -88,10 +91,17 @@ export default function LoginPage({ navigation }) {
       <Form last>
         <Input
           placeholder="******"
-          placeholderTextColor="#DCDCDC"
+          placeholderTextColor="#808080"
+          returnKeyType="next"
+          blurOnSubmit={false}
           secureTextEntry
           value={password}
           onChangeText={(value) => setPassword(value)}
+          ref={input2Ref}
+          onSubmitEditing={() => {
+            tryLogin(email, password, navigation, setIsLoading);
+            Keyboard.dismiss();
+          }}
         />
       </Form>
 

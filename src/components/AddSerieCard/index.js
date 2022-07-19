@@ -1,5 +1,5 @@
-import React from 'react';
-import add from '../../resources/imgs/add.png';
+import React from "react";
+import add from "../../resources/imgs/add.png";
 /*import {
     StyleSheet, 
     Dimensions,
@@ -7,20 +7,16 @@ import add from '../../resources/imgs/add.png';
     TouchableOpacity
 } from 'react-native';*/
 
-import { AddSeriesCard, Card, Image } from './styles';
+import { AddSeriesCard, Card, Image } from "./styles";
 
 // import { Container } from './styles';
 
 const AddSerieCard = ({ serie, isFirstColumn, onNavigate }) => (
-    <AddSeriesCard
-        onPress={onNavigate}
-        isFirstColumn={isFirstColumn}>
-        <Card>
-            <Image 
-                source={add}
-            />
-        </Card>
-    </AddSeriesCard>
+  <AddSeriesCard onPress={onNavigate} isFirstColumn={isFirstColumn}>
+    <Card>
+      <Image source={add} />
+    </Card>
+  </AddSeriesCard>
 );
 
 /*const styles = StyleSheet.create({

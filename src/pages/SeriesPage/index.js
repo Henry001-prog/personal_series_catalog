@@ -1,7 +1,8 @@
-import React, { useEffect, useState, Suspense } from "react";
-import { Text } from "react-native";
+import React, { Suspense, useEffect, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import {
   ViewLoading,
+  BoxIcon,
   Loading,
   Container,
   ViewList,
@@ -9,39 +10,83 @@ import {
   ViewBottom,
 } from "./styles";
 
-import { ListSeries } from "../../components/ListSeries";
 import SerieCard from "../../components/SerieCard";
 
 import AddSerieCard from "../../components/AddSerieCard";
+import { MaterialIcons } from "@expo/vector-icons";
+
+import { logout } from "../../storeJotai/userAtom";
 
 import {
-  seriesListAtom,
   watchSeriesJotaiAtom,
-  loadableAtom,
-  testAtom,
-  intervalList,
   watchSeriesJotai,
-  listFunc,
-  result,
-} from "../../storeJotai/event";
-import { logout } from "../../store/actions";
-import { useAtom, atom, Provider } from "jotai";
-import { loadable, waitForAll } from "jotai/utils";
+} from "../../storeJotai/seriesAtom";
+import { isLoading } from "../../storeJotai/serieFormAtom";
+import { useAtom } from "jotai";
 
 const isEven = (number) => number % 2 === 0;
 
 export default function SeriesPage({ navigation }) {
+  const [series, setSeries] = useAtom(watchSeriesJotai);
+  const [loading, setLoading] = useAtom(isLoading);
+  const isFocused = useIsFocused();
+  // console.warn("Foco: ", isFocused);
+
+  // if (watchSeriesJotai === null) {
+  //   return (
+  //     <ViewLoading>
+  //       <Loading size="large" color="light-blue" />
+  //     </ViewLoading>
+  //   );
+  // }
+
+  useEffect(() => {
+    setLoading(true);
+    async function results() {
+      setLoading(true);
+      const response = await watchSeriesJotaiAtom();
+      setSeries(response);
+      setLoading(false);
+      // dispatch({ type: "Set_Series", series: response });
+    }
+    results();
+    if (isFocused) results();
+
+    // if (isFocused) results();
+  }, [isFocused, setLoading, setSeries]);
+
   return (
     <Container>
-      <Suspense
-        fallback={
-          <ViewLoading>
-            <Loading size="large" color="light-blue" />
-          </ViewLoading>
-        }
-      >
-        <ListSeries />
-      </Suspense>
+      {!series || loading ? (
+        <ViewLoading>
+          <Loading size="large" color="light-blue" />
+        </ViewLoading>
+      ) : (
+        <ViewList
+          data={[...series, { isLast: true }]}
+          renderItem={({ item, index }) =>
+            item.isLast ? (
+              <AddSerieCard
+                isFirstColumn={isEven(index)}
+                onNavigate={() => navigation.navigate("SerieForm")}
+              />
+            ) : (
+              <SerieCard
+                serie={item}
+                isFirstColumn={isEven(index)}
+                onNavigate={() =>
+                  navigation.navigate("SerieDetail", { serie: item })
+                }
+              />
+            )
+          }
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={(props) => <ViewTop />}
+          ListFooterComponent={(props) => <ViewBottom />}
+        />
+      )}
     </Container>
   );
 }

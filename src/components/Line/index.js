@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 //import { View, Text, StyleSheet } from 'react-native';
 
-import { Container, CellLabel, Content } from './styles';
+import { Container, CellLabel, Title, Content } from "./styles";
 
-const Line = ({label = '', content = '-'}) => {
-    return (
-        <Container>
-            <CellLabel label={label.length}>{ label }</CellLabel>
-            <Content>{content}</Content>
-        </Container>
-    );
-}
+const Line = ({ label = "", content = "-" }) => {
+  return (
+    <Container>
+      <Content>{content}</Content>
+    </Container>
+  );
+};
 
 /*const styles = StyleSheet.create({
     line: {

@@ -1,27 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import { SeriesCard, Card, Image, CardTitleWrapper, CardTitle } from './styles';
+import { SeriesCard, Card, Image, CardTitleWrapper, CardTitle } from "./styles";
+import { useIsFocused } from "@react-navigation/native";
+import { Text } from "react-native";
 
-const SerieCard = ({ serie, isFirstColumn, onNavigate }) => (
-    <SeriesCard
-        isFirstColumn={isFirstColumn}
-        onPress={onNavigate}
-    >
-        <Card>
-            <Image
-                serie={serie.img64}
-                source={{
-                    uri: `data:image/jpeg;base64,${serie.img64}`
-                }}
-                aspectRatio={1}
-                resizeMode="stretch"
-            />
-            <CardTitleWrapper>
-                <CardTitle>{serie.title}</CardTitle>
-            </CardTitleWrapper>
-        </Card>
+const SerieCard = ({ serie, isFirstColumn, onNavigate }) => {
+  return (
+    <SeriesCard isFirstColumn={isFirstColumn} onPress={onNavigate}>
+      <Card>
+        <Image
+          serie={serie.img64}
+          source={{
+            uri: `data:image/jpeg;base64,${serie.img64}`,
+          }}
+          aspectRatio={1}
+          resizeMode="stretch"
+        />
+        <CardTitleWrapper>
+          <CardTitle adjustsFontSizeToFit={true} numberOfLines={1}>
+            {serie.title}
+          </CardTitle>
+        </CardTitleWrapper>
+      </Card>
     </SeriesCard>
-);
+  );
+};
 
 /*const styles = StyleSheet.create({
     container: {
