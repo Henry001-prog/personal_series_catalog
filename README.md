@@ -10,5 +10,5 @@
 
 <h3 align="center">
     <p>Splash screen</p>
-    <img src="/screenshots/series_new.mp4" height="480" width="280">
+    <img src="/screenshots/series_new_v.mp4" height="480" width="280">
 </h3>
