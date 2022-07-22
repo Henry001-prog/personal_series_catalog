@@ -1,6 +1,5 @@
 import firebase from "@firebase/app";
 import "@firebase/database";
-import { Alert } from "react-native";
 import { atom } from "jotai";
 import { atomWithReducer } from "jotai/utils";
 
@@ -21,7 +20,6 @@ const formReducer = (state = INITIAL_STATE, action) => {
   } else {
     const newState = { ...state };
     newState[action.field] = action.value;
-    // console.warn("Form: ", newState);
     return newState;
   }
 };
@@ -38,28 +36,7 @@ export const saveSerie = async (serie) => {
     } else {
       await db.ref(`/users/${currentUser.uid}/series`).push(serie);
     }
-    // dispatch(serieSavedSuccess());
   } catch (e) {
     console.log("deu algum erro aqui no firebase");
   }
 };
-
-// const formReducer = (prev, action) => {
-//   if (action.type === "SET_FIELD") {
-//     console.warn("Load1: ", action.series);
-//     return action.series;
-//   } else {
-//     throw new Error("unknown action type");
-//   }
-// };
-
-// const wholeSerie = (action) => {
-//   return action.serie;
-// };
-
-// const resetForm = (serieFormJotai) => {
-//   return INITIAL_STATE;
-// };
-
-// export const setWholeSerieAtom = atomWithReducer({}, wholeSerie);
-// export const resetFormAtom = atomWithReducer(INITIAL_STATE, resetForm);

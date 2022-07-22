@@ -1,8 +1,7 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import {
   ViewLoading,
-  BoxIcon,
   Loading,
   Container,
   ViewList,
@@ -13,9 +12,6 @@ import {
 import SerieCard from "../../components/SerieCard";
 
 import AddSerieCard from "../../components/AddSerieCard";
-import { MaterialIcons } from "@expo/vector-icons";
-
-import { logout } from "../../storeJotai/userAtom";
 
 import {
   watchSeriesJotaiAtom,
@@ -30,15 +26,6 @@ export default function SeriesPage({ navigation }) {
   const [series, setSeries] = useAtom(watchSeriesJotai);
   const [loading, setLoading] = useAtom(isLoading);
   const isFocused = useIsFocused();
-  // console.warn("Foco: ", isFocused);
-
-  // if (watchSeriesJotai === null) {
-  //   return (
-  //     <ViewLoading>
-  //       <Loading size="large" color="light-blue" />
-  //     </ViewLoading>
-  //   );
-  // }
 
   useEffect(() => {
     setLoading(true);
@@ -47,12 +34,9 @@ export default function SeriesPage({ navigation }) {
       const response = await watchSeriesJotaiAtom();
       setSeries(response);
       setLoading(false);
-      // dispatch({ type: "Set_Series", series: response });
     }
     results();
     if (isFocused) results();
-
-    // if (isFocused) results();
   }, [isFocused, setLoading, setSeries]);
 
   return (

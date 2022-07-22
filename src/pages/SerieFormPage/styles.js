@@ -45,6 +45,13 @@ export const Image = styled.Image`
   width: 100%;
 `;
 
+export const ImageBackground = styled.ImageBackground`
+  height: 350px;
+  width: 336px;
+  border-width: 1px;
+  margin-top: 30px;
+`;
+
 export const ViewRate = styled.View`
   flex-direction: row;
   justify-content: space-between;

@@ -25,27 +25,17 @@ import {
 import FormRow from "../../components/FormRow";
 
 import { useAtom } from "jotai";
-import {
-  setFieldAtom,
-  saveSerie,
-  isLoading,
-} from "../../storeJotai/serieFormAtom";
-
-// import * as Permissions from "expo-permissions";
+import { setFieldAtom, saveSerie } from "../../storeJotai/serieFormAtom";
 import * as ImagePicker from "expo-image-picker";
 import { Camera } from "expo-camera";
 
 export default function SerieFormPage({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(false);
   const [serieFormAtom, setSerieFormAtom] = useAtom(setFieldAtom);
-  // console.warn("my form: ", serieFormAtom);
 
   const input2Ref = useRef();
-  const input3Ref = useRef();
 
   useEffect(() => {
-    //dispatch(setWholeSerie());
-    //dispatch(resetForm());
     const { params } = route;
     if (params && params.serieToEdit) {
       const serieToEdit = params.serieToEdit;
@@ -59,24 +49,11 @@ export default function SerieFormPage({ navigation, route }) {
   }, [route, setSerieFormAtom]);
 
   async function pickImage() {
-    /* Para câmera:
-		const { status } = await Permissions.askAsync(
-			Permissions.CAMERA_ROLL,
-			Permissions.CAMERA
-		); */
-
     const { status } = await Camera.requestCameraPermissionsAsync();
     if (status !== "granted") {
       Alert.alert("Você precisa permitir o acesso!");
       return;
     }
-
-    /*const result = await ImagePicker.launchCameraAsync({
-			quality: 0.2,
-			base64: true,
-			allowsEditing: true,
-			aspect: [1, 1], // Android only
-		});*/
 
     const result = await ImagePicker.launchImageLibraryAsync({
       quality: 0.3,

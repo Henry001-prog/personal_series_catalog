@@ -14,12 +14,11 @@ import SerieDetailPage from "./pages/SerieDetailPage";
 import SerieFormPage from "./pages/SerieFormPage";
 
 import { useDispatch } from "react-redux";
-// import { logout } from "../src/store/actions";
 import { logout } from "../src/storeJotai/userAtom";
 
 import { setFieldAtom, isLoading } from "../src/storeJotai/serieFormAtom";
 
-import { View, TouchableOpacity, Text, Animated } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
@@ -67,7 +66,6 @@ export default function App() {
         initialRouteName="Login"
         screenOptions={{
           headerTransparent: true,
-          // title: "Series",
           headerTitleAlign: "center",
           headerTintColor: "white",
           headerStyle: {
@@ -88,7 +86,6 @@ export default function App() {
           }}
           name="Login"
           component={LoginScreen}
-          // options={{ headerTitle: "Bem-vindo!", headerTitleAlign: "center" }}
         />
         <Stack.Screen
           name="Main"
@@ -152,7 +149,6 @@ export default function App() {
           name="SerieForm"
           component={SerieFormPage}
           options={({ route, navigation }) => ({
-            // headerShown: false,
             headerLeft: () => (
               <View
                 style={{

@@ -1,32 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Keyboard } from "react-native";
 import firebase from "firebase";
-import { connect } from "react-redux";
 
-// import { tryLogin } from "../../store/actions";
 import { tryLogin } from "../../storeJotai/userAtom";
-import { useSelector, useDispatch } from "react-redux";
 
-import {
-  Div,
-  Form,
-  Input,
-  Loading,
-  Button,
-  TextButton,
-  ViewErrorMessage,
-  ErrorMessage,
-} from "./styles";
-
-import { showMessage } from "react-native-flash-message";
+import { Div, Form, Input, Loading, Button, TextButton } from "./styles";
 
 export default function LoginPage({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
-  //console.log('email:', email);
   const [password, setPassword] = useState("");
-  //console.log('password:', password);
 
   const input2Ref = useRef();
 
@@ -46,17 +29,6 @@ export default function LoginPage({ navigation }) {
       firebase.initializeApp(firebaseConfig);
     }
   }, []);
-
-  function getMessageByErrorCode(errorCode) {
-    switch (errorCode) {
-      case "auth/wrong-password":
-        return "Senha incorreta";
-      case "auth/user-not-found":
-        return "Usuário não encontrado";
-      default:
-        return "Erro desconhecido";
-    }
-  }
 
   function renderButton() {
     if (isLoading) return <Loading size="large" color="light-blue" />;

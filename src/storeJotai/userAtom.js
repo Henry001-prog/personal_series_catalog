@@ -19,8 +19,6 @@ export const tryLogin = async (email, password, navigation, setIsLoading) => {
       .signInWithEmailAndPassword(email, password);
     setIsLoading(true);
     if (user) {
-      // const action = userLoginSuccess(user);
-      // dispatch(action);
       navigation.replace("Main");
     }
     setIsLoading(false);
@@ -64,9 +62,6 @@ export const tryLogin = async (email, password, navigation, setIsLoading) => {
 export const logout = async (navigation) => {
   try {
     const tryLogout = firebase.auth().signOut();
-    // const action = userLogout(tryLogout);
-    // console.warn("Deslogou: ", tryLogout);
-    // dispatch(action);
     navigation.replace("Login");
   } catch (error) {
     Alert.alert("Não foi possível carregar os dados!");

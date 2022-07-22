@@ -1,11 +1,5 @@
 import styled from "styled-components/native";
 
-export const BoxIcon = styled.TouchableOpacity`
-  margin-top: 50px;
-  align-items: flex-end;
-  margin-right: 15px;
-`;
-
 export const ViewLoading = styled.View`
   flex: 1;
   justify-content: center;

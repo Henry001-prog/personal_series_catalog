@@ -13,10 +13,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 
-import { useDispatch } from "react-redux";
-// import { deleteSerie } from '../../store/actions';
 import { deleteSerie } from "../../storeJotai/event";
-import { Text, View } from "react-native";
 
 import Line from "../../components/Line";
 import LongText from "../../components/LongText";
