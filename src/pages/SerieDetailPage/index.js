@@ -13,11 +13,11 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 
-import { deleteSerie } from "../../storeJotai/event";
+import { deleteSerie } from "../../storeJotai/seriesAtom";
 
 import Line from "../../components/Line";
 import LongText from "../../components/LongText";
-import { isLoading } from "../../storeJotai/event";
+import { isLoading } from "../../storeJotai/serieFormAtom";
 import { useAtom } from "jotai";
 
 export default function SerieDetailPage({ navigation, route }) {

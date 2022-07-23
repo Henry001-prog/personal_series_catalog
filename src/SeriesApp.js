@@ -1,36 +1,19 @@
 import React from "react";
 import Router from "./Router";
 
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import reduxThunk from "redux-thunk";
-
 import FlashMessage from "react-native-flash-message";
 
-import { composeWithDevTools } from "remote-redux-devtools";
-
-import rootReducer from "./store/reducers";
-
 import { Provider as Store } from "jotai";
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(reduxThunk))
-);
 
 /*const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(reduxThunk)
 ));*/
 
 const SeriesApp = (prop) => (
-  <Provider store={store}>
-    <Store>
-      <Router />
-      <FlashMessage position="top" style={{ alignItems: "center" }} />
-    </Store>
-  </Provider>
+  <Store>
+    <Router />
+    <FlashMessage position="top" style={{ alignItems: "center" }} />
+  </Store>
 );
 
 export default SeriesApp;

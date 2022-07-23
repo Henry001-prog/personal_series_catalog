@@ -13,7 +13,6 @@ import SeriesPage from "./pages/SeriesPage";
 import SerieDetailPage from "./pages/SerieDetailPage";
 import SerieFormPage from "./pages/SerieFormPage";
 
-import { useDispatch } from "react-redux";
 import { logout } from "../src/storeJotai/userAtom";
 
 import { setFieldAtom, isLoading } from "../src/storeJotai/serieFormAtom";
@@ -26,39 +25,6 @@ const Stack = createStackNavigator();
 export default function App() {
   const [serieFormAtom, setSerieFormAtom] = useAtom(setFieldAtom);
   const [loading, setLoading] = useAtom(isLoading);
-
-  const dispatch = useDispatch();
-
-  function RenderLoading() {
-    const navigation = useNavigation();
-    return (
-      <>
-        <HeaderBackButton
-          tintColor={"white"}
-          onPress={() => {
-            setLoading(true);
-            navigation.goBack();
-          }}
-        />
-      </>
-    );
-  }
-
-  function RenderResetFormButton() {
-    const navigation = useNavigation();
-    return (
-      <>
-        <HeaderBackButton
-          tintColor={"white"}
-          onPress={() => {
-            setLoading(true);
-            setSerieFormAtom({ type: "setResetFormAtom" });
-            navigation.goBack();
-          }}
-        />
-      </>
-    );
-  }
 
   return (
     <NavigationContainer>
