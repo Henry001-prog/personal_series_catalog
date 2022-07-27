@@ -1,6 +1,6 @@
 <h1 align="center">Personal Series Catalog</h1>
 
-<h2>Note: there are two branches in this repository, one using class components (master) and one using function components with hooks (develop).
+<h2>Note: there are four branches in this repository, one using class components (master), one using function components with hooks (develop), one using function components, hooks and the Jotai state management (develop-v2) and one using function components, hooks, Jotai state management with TypeScript (develop-typescript).
 </h2>
 
 <br>
