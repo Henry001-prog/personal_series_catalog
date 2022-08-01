@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Picker,
-    Slider,
     Alert
 } from 'react-native';
+
+import { Picker } from '@react-native-picker/picker';
+import Slider from '@react-native-community/slider';
 
 import { 
     KeyboardAvoidingView, 
