@@ -15,11 +15,12 @@ export const watchSeriesJotaiAtom = async (): Promise<SeriesType[] | undefined> 
     const series = snapshot.val();
 
     const keys = Object.keys(series);
-    const seriesWithKeys = keys.map((id) => {
+    const seriesWithKeys: SeriesType[] = keys.map((id) => {
       return { ...series[id], id };
     });
 
-    return seriesWithKeys;
+    const isLast = { isLast: true } as SeriesType;
+    return [...seriesWithKeys, isLast];
   } catch (error: any) {
     if (!error.message.includes("null is not an object")) {
       Alert.alert("Error: could not login!");

@@ -9,6 +9,8 @@ import {
   ViewBottom,
 } from "./styles";
 
+import { FlatList, ListRenderItemInfo } from "react-native"
+
 import SerieCard from "../../components/SerieCard";
 
 import AddSerieCard from "../../components/AddSerieCard";
@@ -51,7 +53,7 @@ export default function SeriesPage(navigation: SerieFormScreenNavigationProp | S
         </ViewLoading>
       ) : (
         <ViewList
-          data={[...series, { isLast: true }]}
+          data={series}
           renderItem={({ item, index }: Item) =>
             item.isLast ? (
               <AddSerieCard
@@ -67,8 +69,8 @@ export default function SeriesPage(navigation: SerieFormScreenNavigationProp | S
           keyExtractor={(item, index: number) => index.toString()}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={(props) => <ViewTop />}
-          ListFooterComponent={(props) => <ViewBottom />}
+          ListHeaderComponent={() => <ViewTop />}
+          ListFooterComponent={() => <ViewBottom />}
         />
       )}
     </Container>

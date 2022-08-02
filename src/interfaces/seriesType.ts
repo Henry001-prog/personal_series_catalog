@@ -5,7 +5,7 @@ export interface SeriesType {
   rate: number;
   img64: string;
   description: string;
-  isLast?: boolean
+  isLast: boolean
 }
 
 export interface Item {

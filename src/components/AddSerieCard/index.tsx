@@ -2,11 +2,9 @@ import React from "react";
 import add from "../../resources/imgs/add.png";
 
 import { AddSeriesCard, Card, Image } from "./styles";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import {
   SerieFormScreenNavigationProp,
-  SerieDetailScreenNavigationProp,
 } from "../../types/navigation";
 
 const AddSerieCard = (isFirstColumn: any) => {

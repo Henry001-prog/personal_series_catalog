@@ -8,7 +8,7 @@ import { SerieFormScreenNavigationProp, SerieDetailScreenNavigationProp } from "
 
 type Props = {
   serie: SeriesType
-  isFirstColumn: any
+  isFirstColumn?: any
 }
 
 const SerieCard = ({
