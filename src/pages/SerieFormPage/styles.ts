@@ -31,7 +31,7 @@ export const TextInput = styled.TextInput`
   padding-left: 15px;
   padding-bottom: 5px;
   border-color: transparent;
-  width: ${width < 321 ? "285px" : "339px"};
+  width: ${width < 321 ? "285px" : "100%"};
   border-radius: 10px;
   background-color: #dce4f5;
   opacity: 0.7;
@@ -45,7 +45,7 @@ export const TextArea = styled(ReactTextInput)`
   padding-left: 15px;
   padding-bottom: 5px;
   border-color: transparent;
-  width: ${width < 321 ? "285px" : "339px"};
+  width: ${width < 321 ? "285px" : "100%"};
   border-radius: 10px;
   background-color: #dce4f5;
   opacity: 0.7;
@@ -61,9 +61,11 @@ export const Image = styled.Image`
 
 export const ImageBackground = styled.ImageBackground`
   height: 350px;
-  width: 336px;
+  width: 100%;
   border-width: 1px;
   margin-top: 30px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ViewRate = styled.View`
@@ -104,7 +106,7 @@ export const Button = styled.TouchableOpacity`
   background-color: #007fff;
   border-radius: 10px;
   height: 50px;
-  width: 339px;
+  width: 100%;
 `;
 
 export const ViewButtonClean = styled.View`
@@ -119,7 +121,7 @@ export const ButtonClean = styled.TouchableOpacity`
   background-color: #007fff;
   border-radius: 10px;
   height: 50px;
-  width: 339px;
+  width: 100%;
   background-color: #8b0000;
 `;
 
@@ -136,7 +138,7 @@ export const Text = styled.Text`
 
 export const IconContainer = styled.View`
   height: 350px;
-  width: 339px;
+  width: 100%;
   border-width: 1px;
   margin-top: 30px;
   align-items: center;

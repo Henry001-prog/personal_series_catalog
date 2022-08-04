@@ -24,7 +24,7 @@ export const Form = styled(Container)`
   background-color: transparent;
   border-radius: 9px;
   border-color: transparent;
-  width: 330px;
+  width: 87%;
 `;
 
 export const Input = styled(TextInput).attrs({
@@ -33,7 +33,7 @@ export const Input = styled(TextInput).attrs({
   padding-left: 15px;
   padding-bottom: 5px;
   border-color: transparent;
-  width: ${width < 321 ? "285px" : "330px"};
+  width: ${width < 321 ? "285px" : "100%"};
   border-radius: 7px;
   background-color: #dce4f5;
   opacity: 0.7;

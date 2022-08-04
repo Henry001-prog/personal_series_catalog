@@ -19,7 +19,7 @@ interface FirstColumn {
 export const AddSeriesCard = styled.TouchableOpacity<FirstColumn>`
   width: 50%;
   padding: ${(props) =>
-    props.isFirstColumn ? "5px 5px 5px 10px" : "5px 10px 5px 5px"};
+    props.isFirstColumn ? "5px 5px 5px 0px" : "5px 10px 5px 5px"};
   height: ${Dimensions.get("window").width / 2}px;
 `;
 
@@ -31,6 +31,6 @@ export const Card = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: 50%;
-  height: 50%;
+  width: 46.3%;
+  height: 49%;
 `;
