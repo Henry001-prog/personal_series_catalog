@@ -7,13 +7,12 @@ import {
   SerieFormScreenNavigationProp,
 } from "../../types/navigation";
 
-const AddSerieCard = (isFirstColumn: any) => {
+const AddSerieCard = () => {
   const navigation = useNavigation<SerieFormScreenNavigationProp>();
 
   return (
     <AddSeriesCard
       onPress={() => navigation.navigate("SerieForm")}
-      isFirstColumn={isFirstColumn}
     >
       <Card>
         <Image source={add} />

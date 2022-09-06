@@ -13,14 +13,14 @@ export type SerieFormScreenNavigationProp = StackNavigationProp<
 
 interface FirstColumn {
   onPress: any
-  isFirstColumn: boolean
+  isFirstColumn?: boolean
 }
 
 export const AddSeriesCard = styled.TouchableOpacity<FirstColumn>`
   width: 50%;
-  padding: ${(props) =>
-    props.isFirstColumn ? "5px 5px 5px 0px" : "5px 10px 5px 5px"};
+  padding: 5px 5px 5px 0px;
   height: ${Dimensions.get("window").width / 2}px;
+  justify-content: flex-end;
 `;
 
 export const Card = styled.View`
@@ -31,6 +31,8 @@ export const Card = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: 46.3%;
-  height: 49%;
+  width: 33.8%;
+  height: 35.7%;
+  margin-top: 98%;
+  margin-left: 4%;
 `;
